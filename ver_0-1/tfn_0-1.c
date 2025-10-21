@@ -4,6 +4,12 @@
 #include <string.h>
 #include <time.h>
 
+#ifdef _WIN32
+#define CLEAR_CMD "cls"
+#else
+#define CLEAR_CMD "clear"
+#endif
+
 struct timespec ts = {.tv_sec = 0, .tv_nsec = 0};
 struct timespec ts1 = {.tv_sec = 0, .tv_nsec = 0};
 
@@ -42,7 +48,7 @@ void setup_game();
 int main() {
   getHigh();
   srand(time(NULL));
-  system("clear");
+  system(CLEAR_CMD);
   make_vars();
   setup_game();
   render_scene();
@@ -58,7 +64,7 @@ int main() {
     command[strcspn(command, "\n")] = '\0';
     to_up(command);
 
-    system("clear");
+    system(CLEAR_CMD);
     if (strcmp(command, "DEBUG") == 0) {
       printf("Number of rows: %d\n", rows);
       printf("Number of columns: %d\n", cols);
@@ -91,7 +97,7 @@ int main() {
       go_right();
       render_scene();
     } else if (strcmp(alias(command), "EXIT") == 0) {
-      system("clear");
+      system(CLEAR_CMD);
       printf("Your final score: %d", score);
       printf("Thanks for playing!\n");
       break;
@@ -107,7 +113,7 @@ int main() {
 }
 
 void render_scene() {
-  system("clear");
+  system(CLEAR_CMD);
   printf("Highscore: %d\n", highscore);
   printf("Score: %d\n", score);
   for (int i = 0; i < rows; i++) {
@@ -237,7 +243,7 @@ void attack() {
 
     if (strcmp(alias(direction), "UP") == 0) {
       if (y_cord == 0) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord - 1][x_cord] == 'W' || grid[y_cord - 1][x_cord] == 'w') {
         grid[y_cord - 1][x_cord] = '-';
@@ -245,12 +251,12 @@ void attack() {
         enemy_count--;
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no enemy above\n");
       }
     } else if (strcmp(alias(direction), "DOWN") == 0) {
       if (y_cord == rows - 1) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord + 1][x_cord] == 'W' || grid[y_cord + 1][x_cord] == 'w') {
         grid[y_cord + 1][x_cord] = '-';
@@ -258,12 +264,12 @@ void attack() {
         enemy_count--;
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no enemy below\n");
       }
     } else if (strcmp(alias(direction), "LEFT") == 0) {
       if (x_cord == 0) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord][x_cord - 1] == 'W' || grid[y_cord][x_cord - 1] == 'w') {
         grid[y_cord][x_cord - 1] = '-';
@@ -271,12 +277,12 @@ void attack() {
         enemy_count--;
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no enemy to the left\n");
       }
     } else if (strcmp(alias(direction), "RIGHT") == 0) {
       if (x_cord == cols - 1) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord][x_cord + 1] == 'W' || grid[y_cord][x_cord + 1] == 'w') {
         grid[y_cord][x_cord + 1] = '-';
@@ -284,11 +290,11 @@ void attack() {
         enemy_count--;
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no enemy to the right\n");
       }
     } else {
-      system("clear");
+      system(CLEAR_CMD);
       printf("Invalid direction\n");
     }
   }
@@ -308,7 +314,7 @@ void mine() {
 
     if (strcmp(alias(direction), "UP") == 0) {
       if (y_cord == 0) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord - 1][x_cord] == 'O') {
         grid[y_cord - 1][x_cord] = 'o';
@@ -317,12 +323,12 @@ void mine() {
         grid[y_cord - 1][x_cord] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no stone above\n");
       }
     } else if (strcmp(alias(direction), "DOWN") == 0) {
       if (y_cord == rows - 1) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord + 1][x_cord] == 'O') {
         grid[y_cord + 1][x_cord] = 'o';
@@ -331,12 +337,12 @@ void mine() {
         grid[y_cord + 1][x_cord] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no stone below\n");
       }
     } else if (strcmp(alias(direction), "LEFT") == 0) {
       if (x_cord == 0) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord][x_cord - 1] == 'O') {
         grid[y_cord][x_cord - 1] = 'o';
@@ -345,12 +351,12 @@ void mine() {
         grid[y_cord][x_cord - 1] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no stone to the left\n");
       }
     } else if (strcmp(alias(direction), "RIGHT") == 0) {
       if (x_cord == cols - 1) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord][x_cord + 1] == 'O') {
         grid[y_cord][x_cord + 1] = 'o';
@@ -359,11 +365,11 @@ void mine() {
         grid[y_cord][x_cord + 1] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no stone to the right\n");
       }
     } else {
-      system("clear");
+      system(CLEAR_CMD);
       printf("Invalid direction\n");
     }
   }
@@ -383,7 +389,7 @@ void cut() {
 
     if (strcmp(alias(direction), "UP") == 0) {
       if (y_cord == 0) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord - 1][x_cord] == 'Y') {
         grid[y_cord - 1][x_cord] = 'y';
@@ -392,12 +398,12 @@ void cut() {
         grid[y_cord - 1][x_cord] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no tree above\n");
       }
     } else if (strcmp(alias(direction), "DOWN") == 0) {
       if (y_cord == rows - 1) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord + 1][x_cord] == 'Y') {
         grid[y_cord + 1][x_cord] = 'y';
@@ -406,12 +412,12 @@ void cut() {
         grid[y_cord + 1][x_cord] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no tree below\n");
       }
     } else if (strcmp(alias(direction), "LEFT") == 0) {
       if (x_cord == 0) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord][x_cord - 1] == 'Y') {
         grid[y_cord][x_cord - 1] = 'y';
@@ -420,12 +426,12 @@ void cut() {
         grid[y_cord][x_cord - 1] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no tree to the left\n");
       }
     } else if (strcmp(alias(direction), "RIGHT") == 0) {
       if (x_cord == cols - 1) {
-        system("clear");
+        system(CLEAR_CMD);
         printf("Out of bounds\n");
       } else if (grid[y_cord][x_cord + 1] == 'Y') {
         grid[y_cord][x_cord + 1] = 'y';
@@ -434,18 +440,18 @@ void cut() {
         grid[y_cord][x_cord + 1] = '-';
         break;
       } else {
-        system("clear");
+        system(CLEAR_CMD);
         printf("There is no tree to the right\n");
       }
     } else {
-      system("clear");
+      system(CLEAR_CMD);
       printf("Invalid direction\n");
     }
   }
 }
 
 void print_help() {
-  system("clear");
+  system(CLEAR_CMD);
   printf("Hello, welcome!\n");
   printf("This is a basic terminal game made in C\n");
   printf("It is a project to learn 2D arrays and array manipulation\n");
