@@ -1,0 +1,11 @@
+rebulid the whole thing in cpp (cpp just better fr)
+major changes to the rendering function
+fixes for other functions
+removed the highscore mechanism (dont plan on reintroducing it)
+
+in the middle of working on 0-2 i started working on 0-3
+so when some bugs in 0-2 came to my eyes i didnt pay attention to it much
+
+
+TL;DR:
+no highscore, bugs
