@@ -1,0 +1,6 @@
+added color to the game in terminal
+more changes to the functions and render
+added a whole crafting menu that lets you upgrade your stats
+added a structure that has a random chance to appear
+enemies, trees and stones get tougher
+reintroduced the highscore saving along with progress saving

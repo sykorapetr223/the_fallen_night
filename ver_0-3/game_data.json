@@ -1,0 +1,14 @@
+{
+    "game": {
+        "axe": 1,
+        "damage": 1,
+        "highscore": 42,
+        "iteration": 0,
+        "pickaxe": 1,
+        "score": 0,
+        "start": true,
+        "stone": 0,
+        "tough": 1,
+        "wood": 0
+    }
+}
